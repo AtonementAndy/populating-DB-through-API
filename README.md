@@ -1,4 +1,4 @@
-# populating-DB-through-API
+# Populating DB Through API
 
 Populating a database consuming an external API.
 
