@@ -14,6 +14,6 @@ The code is pretty simple:
 2. Downloaded the necessary packages(you can check up here).
 3. Created the interfaces to apply SOLID Principles.
 4. Implemented the Service class.
-5. And in teh controller, i implemented the call to the API and the code to populate the Database.
+5. And in the controller, i implemented the call to the API and the code to populate the Database.
 
 Thanks for coming here!
