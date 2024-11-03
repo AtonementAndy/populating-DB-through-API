@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PopulateDB", "PopulateDB\PopulateDB.csproj", "{D9DAB962-AB20-4237-83F8-A1F9C2E2DA14}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D9DAB962-AB20-4237-83F8-A1F9C2E2DA14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9DAB962-AB20-4237-83F8-A1F9C2E2DA14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9DAB962-AB20-4237-83F8-A1F9C2E2DA14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9DAB962-AB20-4237-83F8-A1F9C2E2DA14}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2E37D55E-C72C-4DDE-B028-39DE95B96CD6}
+	EndGlobalSection
+EndGlobal

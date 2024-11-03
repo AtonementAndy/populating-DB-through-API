@@ -1,0 +1,6 @@
+@PopulateDB_HostAddress = http://localhost:5105
+
+GET {{PopulateDB_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

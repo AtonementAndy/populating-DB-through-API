@@ -1,0 +1,12 @@
+[
+  {
+    "ContainingType": "PopulateDB.Controllers.PopulateController",
+    "Method": "Post",
+    "RelativePath": "api/Populate",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]
