@@ -15,7 +15,7 @@ namespace PopulateDB.Services
         public async Task<User> Populate(User user)
         {
             if (user is null)
-                throw new ArgumentNullException(nameof(user), "Dados do filme não podem ser nulos.");
+                throw new ArgumentNullException(nameof(user));
 
             const string sqlUser = @"INSERT INTO Users (Name, Username, Phone, Website, Email, AddressId)
                                      VALUES (@Name, @Username, @Phone, @Website, @Email, @AddressId)
