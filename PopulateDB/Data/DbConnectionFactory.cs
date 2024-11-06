@@ -15,6 +15,7 @@ namespace PopulateDB.Data
             if (connString is not null)
                 _connectionsString = connString;
         }
+
         public IDbConnection CreateConnection()
         {
             return new SqlConnection(_connectionsString);

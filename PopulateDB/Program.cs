@@ -6,8 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddTransient<IPopulateService, PopulateService>();
-builder.Services.AddTransient<IDbConnectionFactory, DbConnectionFactory>();
+builder.Services.AddScoped<IPopulateService, PopulateService>();
+builder.Services.AddScoped<IDbConnectionFactory, DbConnectionFactory>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

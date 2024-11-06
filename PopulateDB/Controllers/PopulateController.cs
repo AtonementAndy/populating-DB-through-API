@@ -8,15 +8,10 @@ namespace PopulateDB.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PopulateController : ControllerBase
+    public class PopulateController(IPopulateService service) : ControllerBase
     {
-        private readonly IPopulateService _service;
+        private readonly IPopulateService _service = service;
         private readonly Uri baseUrl = new("https://jsonplaceholder.typicode.com/users");
-
-        public PopulateController(IPopulateService service)
-        {
-            _service = service;
-        }
 
         [HttpPost]
         public async Task<IActionResult> Post()
