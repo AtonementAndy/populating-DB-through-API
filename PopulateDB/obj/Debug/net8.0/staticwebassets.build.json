@@ -1,11 +1,1 @@
-{
-  "Version": 1,
-  "Hash": "xgfZDb4syz4H1oGkxNaWHfGX+GUepyF/EuOuDvJnLvE=",
-  "Source": "PopulateDB",
-  "BasePath": "_content/PopulateDB",
-  "Mode": "Default",
-  "ManifestType": "Build",
-  "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
-}
+{"Version":1,"Hash":"CWfe6GPOAE2hK0x2C8VhKJp7q+RFwXg4Uuahn7ddsus=","Source":"PopulateDB","BasePath":"/","Mode":"Root","ManifestType":"Build","ReferencedProjectsConfiguration":[],"DiscoveryPatterns":[],"Assets":[],"Endpoints":[]}

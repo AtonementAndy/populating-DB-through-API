@@ -1,0 +1,17 @@
+services:
+  # 1. SQL Server 2022 (Banco de Escrita - Relacional)
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: populate_sqlserver
+    user: "0:0"
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=SenhaForte123!
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver_data:/var/opt/mssql/data
+    restart: always
+
+volumes:
+  sqlserver_data:

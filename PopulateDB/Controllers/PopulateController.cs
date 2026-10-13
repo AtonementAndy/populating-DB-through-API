@@ -8,46 +8,43 @@ namespace PopulateDB.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PopulateController(IPopulateService service) : ControllerBase
-    {
-        private readonly IPopulateService _service = service;
-        private readonly Uri baseUrl = new("https://jsonplaceholder.typicode.com/users");
-
+    public class PopulateController(
+        IPopulateService service, 
+        IHttpClientFactory client,
+        ILogger<PopulateController> logger) : ControllerBase
+    {  
         [HttpPost]
-        public async Task<IActionResult> Post()
+        public async Task<IActionResult> Post(CancellationToken ct)
         {
-            using (var client = new HttpClient())
-            {
+            var http = client.CreateClient("populate");
+
                 try
                 {
-                    var response = await client.GetAsync(baseUrl.ToString());
-
+                    var response = await http.GetAsync("users", ct);
                     response.EnsureSuccessStatusCode();
 
-                    if (response.IsSuccessStatusCode)
+                    var result = await response.Content.ReadFromJsonAsync<List<User>>(cancellationToken: ct)
+                        ?? throw new JsonException("Resposta vazia da API externa");
+
+                    foreach (var user in result)
                     {
-                        var content = await response.Content.ReadAsStringAsync();
-                        var result = JsonSerializer.Deserialize<List<User>>(content)
-                            ?? throw new JsonException();
-
-                        foreach (var users in result)
-                        {
-                            await _service.Populate(users);
-                        }
-
-                        return Created(nameof(Post), result);
+                        logger.LogInformation("Populando usuário {Username}", user.Username);  
+                        await service.Populate(user);
                     }
+
+                    return Created(nameof(Post), result);
                 }
                 catch (HttpRequestException ex)
                 {
-                    Console.WriteLine(ex.Message);
+                    logger.LogError(ex, "Erro ao chamar API externa");
+                    return Problem($"Erro ao chamar API externa: {ex.Message}", statusCode: 502);
                 }
                 catch(JsonException ex)
                 {
-                    Console.WriteLine(ex.Message);
+                    logger.LogError(ex, "Erro ao chamar API externa");
+                    return Problem($"Erro ao chamar API externa: {ex.Message}", statusCode: 502);
                 }
-            }
-            return NoContent();
+
         }
     }
 }

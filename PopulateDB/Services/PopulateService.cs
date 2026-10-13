@@ -4,23 +4,12 @@ using PopulateDB.Models;
 
 namespace PopulateDB.Services
 {
-    public class PopulateService : IPopulateService
+    public class PopulateService(IDbConnectionFactory context) : IPopulateService
     {
-        private readonly IDbConnectionFactory _context;
-
-        public PopulateService(IDbConnectionFactory context)
-        {
-            _context = context;
-        }
-
         public async Task<User> Populate(User user)
         {
             if (user is null)
-<<<<<<< HEAD
                 throw new ArgumentNullException(nameof(user), "Os dados não podem ser nulos.");
-=======
-                throw new ArgumentNullException(nameof(user));
->>>>>>> 25f1d38255dba88282a952bd02873d1080014c93
 
             const string sqlUser = @"INSERT INTO Users (Name, Username, Phone, Website, Email, AddressId)
                                      VALUES (@Name, @Username, @Phone, @Website, @Email, @AddressId)
@@ -34,23 +23,23 @@ namespace PopulateDB.Services
                                     VALUES (@Lat, @Lng);
                                     SELECT CAST(SCOPE_IDENTITY() as int);";
 
-            using var connection = _context.CreateConnection();
+            using var connection = context.CreateConnection();
 
             try
             {
                 var geoId = await connection.QueryFirstAsync<int>(sqlGeo, new
                 {
-                    Lat = user.Address.Geo.Lat,
-                    Lng = user.Address.Geo.Lng
+                    user.Address.Geo.Lat,
+                    user.Address.Geo.Lng
                 });
 
                 var addressId = await connection.QuerySingleAsync<int>(sqlAddress, new
                 {
-                    Street = user.Address.Street,
-                    Suite = user.Address.Suite,
-                    City = user.Address.City,
-                    ZipCode = user.Address.ZipCode,
-                    GeoId = geoId
+                    user.Address.Street,
+                    user.Address.Suite,
+                    user.Address.City,
+                    user.Address.ZipCode,
+                    geoId
                 });
 
                 user.Id = await connection.QuerySingleAsync<int>(sqlUser, new
